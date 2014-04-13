@@ -31,52 +31,51 @@
  *
  */
 
-@class MKMapView;
 #import <UIKit/UIKit.h>
 #import "FoldView.h"
 
-@protocol MultiFoldViewDelegate <NSObject>
+@protocol MultiFoldViewDelegate<NSObject>
 - (CGFloat)displacementOfMultiFoldView:(id)multiFoldView;
 @end
 
-@interface MultiFoldView : UIView
+@interface MultiFoldView: UIView
 // number of folds
-@property (nonatomic, assign) int numberOfFolds;
+@property (nonatomic) NSInteger numberOfFolds;
 // fraction of the view on the right to its immediate left
 // determines when the next fold on the right should open
-@property (nonatomic, assign) float pullFactor;
+@property (nonatomic) CGFloat pullFactor;
 // indicate whether the fold is open or closed
-@property (nonatomic, assign) FoldState state;
+@property (nonatomic) FoldState state;
 // fold direction
-@property (nonatomic, assign) FoldDirection foldDirection;
+@property (nonatomic) FoldDirection foldDirection;
 // optimized screenshot follows the scale of the screen
 // non-optimized is always the non-retina image
-@property (nonatomic, assign) BOOL useOptimizedScreenshot;
+@property (nonatomic) BOOL useOptimizedScreenshot;
 // take screenshot just before unfolding
 // this is only necessary for mapview, not for the rest of the views
-@property (nonatomic, readonly) BOOL shouldTakeScreenshotBeforeUnfolding;
+@property (nonatomic) BOOL shouldTakeScreenshotBeforeUnfolding;
 
 @property (nonatomic, strong) UIView *contentViewHolder;
 
-@property (nonatomic, assign) id<MultiFoldViewDelegate> delegate;
+@property (nonatomic, weak) id<MultiFoldViewDelegate> delegate;
 
 // init with the number of folds and pull factor
 
 // defaults to horizontal fold
-- (id)initWithFrame:(CGRect)frame folds:(int)folds pullFactor:(float)pullFactor;
-- (id)initWithFrame:(CGRect)frame foldDirection:(FoldDirection)foldDirection folds:(int)folds pullFactor:(float)pullFactor;
+- (id)initWithFrame:(CGRect)frame folds:(NSInteger)folds pullFactor:(CGFloat)pullFactor;
+- (id)initWithFrame:(CGRect)frame foldDirection:(FoldDirection)foldDirection folds:(NSInteger)folds pullFactor:(CGFloat)pullFactor;
 
 // set the content of the view
 - (void)setContent:(UIView *)contentView;
 // get screenshot of content to overlay in folds
 - (void)drawScreenshotOnFolds;
-- (void)setScreenshotImage:(UIImage*)image;
+- (void)setScreenshotImage:(UIImage *)image;
 
 // set fold states based on offset value
-- (void)calculateFoldStateFromOffset:(float)offset;
+- (void)calculateFoldStateFromOffset:(CGFloat)offset;
 
 // unfold the based on parent offset
-- (void)unfoldWithParentOffset:(float)offset;
+- (void)unfoldWithParentOffset:(CGFloat)offset;
 
 // unfold using a fraction 0 to 1
 // 0 when it's completely folded
@@ -85,7 +84,7 @@
 - (void)unfoldViewToFraction:(CGFloat)fraction;
 
 // unfold foldView using fraction
-- (void)unfoldView:(FoldView*)foldView toFraction:(CGFloat)fraction withOffset:(float)offset;
+- (void)unfoldView:(FoldView *)foldView toFraction:(CGFloat)fraction withOffset:(CGFloat)offset;
 
 // show/hide all folds
 - (void)showFolds:(BOOL)show;

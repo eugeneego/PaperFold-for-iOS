@@ -36,11 +36,12 @@
 #import <QuartzCore/QuartzCore.h>
 #import "PaperFoldConstants.h"
 
-@interface ShadowView : UIView
+@interface ShadowView: UIView
+
 @property (nonatomic, strong) NSMutableArray *colorsArray;
 @property (nonatomic, strong) CAGradientLayer *gradient;
 
 - (id)initWithFrame:(CGRect)frame foldDirection:(FoldDirection)foldDirection;
-- (void)setColorArrays:(NSArray*)colors;
+- (void)setColorArrays:(NSArray *)colors;
 
 @end

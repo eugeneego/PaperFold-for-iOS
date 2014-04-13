@@ -18,32 +18,32 @@
 
 typedef enum
 {
-    FoldStateClosed = 0,
-    FoldStateOpened = 1,
-    FoldStateTransition = 2
+  FoldStateClosed = 0,
+  FoldStateOpened = 1,
+  FoldStateTransition = 2
 } FoldState;
 
 typedef enum
 {
-    FoldDirectionHorizontalRightToLeft = 0,
-    FoldDirectionHorizontalLeftToRight = 1,
-    FoldDirectionVertical = 2,
+  FoldDirectionHorizontalRightToLeft = 0,
+  FoldDirectionHorizontalLeftToRight = 1,
+  FoldDirectionVertical = 2,
 } FoldDirection;
 
 typedef enum
 {
-    PaperFoldStateDefault = 0,
-    PaperFoldStateLeftUnfolded = 1,
-    PaperFoldStateRightUnfolded = 2,
-    PaperFoldStateTopUnfolded = 3,
-    PaperFoldStateBottomUnfolded = 4,
-    PaperFoldStateTransition = 5
+  PaperFoldStateDefault = 0,
+  PaperFoldStateLeftUnfolded = 1,
+  PaperFoldStateRightUnfolded = 2,
+  PaperFoldStateTopUnfolded = 3,
+  PaperFoldStateBottomUnfolded = 4,
+  PaperFoldStateTransition = 5
 } PaperFoldState;
 
 typedef enum
 {
-    PaperFoldInitialPanDirectionHorizontal = 0,
-    PaperFoldInitialPanDirectionVertical = 1,
+  PaperFoldInitialPanDirectionHorizontal = 0,
+  PaperFoldInitialPanDirectionVertical = 1,
 } PaperFoldInitialPanDirection;
 
 #endif

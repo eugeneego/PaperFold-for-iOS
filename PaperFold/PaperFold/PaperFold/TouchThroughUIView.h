@@ -34,6 +34,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface TouchThroughUIView : UIView
+@interface TouchThroughUIView: UIView
 
 @end

@@ -37,6 +37,8 @@
 //typedef void (^CompletionBlock)(UIImage *image);
 
 @interface UIView (Screenshot)
-- (UIImage*)screenshot;
-- (UIImage*)screenshotWithOptimization:(BOOL)optimized;
+
+- (UIImage *)screenshot;
+- (UIImage *)screenshotWithOptimization:(BOOL)optimized;
+
 @end

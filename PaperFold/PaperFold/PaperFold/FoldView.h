@@ -36,13 +36,12 @@
 #import "FacingView.h"
 #import "FoldView.h"
 
-@interface FoldView : UIView
+@interface FoldView: UIView
 
 // each folderView consists of 2 facing views: leftView and rightView
 @property (nonatomic) FacingView *leftView, *rightView;
 // or topView and bottomView
 @property (nonatomic) FacingView *topView, *bottomView;
-
 
 // indicate whether the fold is open or closed
 @property (nonatomic, assign) FoldState state;
@@ -53,7 +52,6 @@
 // non-optimized is always the non-retina image
 @property (nonatomic, assign) BOOL useOptimizedScreenshot;
 
-
 - (id)initWithFrame:(CGRect)frame foldDirection:(FoldDirection)foldDirection;
 
 // unfold the 2 facing views using a fraction 0 to 1
@@ -63,10 +61,10 @@
 - (void)unfoldViewToFraction:(CGFloat)fraction;
 
 // set fold states based on offset value
-- (void)calculateFoldStateFromOffset:(float)offset;
+- (void)calculateFoldStateFromOffset:(CGFloat)offset;
 
 // unfold the 2 facing views based on parent offset
-- (void)unfoldWithParentOffset:(float)offset;
+- (void)unfoldWithParentOffset:(CGFloat)offset;
 
 // set the visible view, to be added as a subview
 - (void)setContent:(UIView *)contentView;
@@ -79,7 +77,7 @@
 
 // set the screenshot overlay on the 2 folds
 // image gets spliced into 2, one for each folds
-- (void)setImage:(UIImage*)image;
+- (void)setImage:(UIImage *)image;
 
 #pragma mark states
 - (void)foldDidOpened;

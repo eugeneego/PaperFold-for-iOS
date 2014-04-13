@@ -31,7 +31,6 @@
  *
  */
 
-
 #import <UIKit/UIKit.h>
 #import "FacingView.h"
 #import "FoldView.h"
@@ -40,7 +39,7 @@
 
 typedef void (^CompletionBlock)();
 
-@protocol PaperFoldViewDelegate <NSObject>
+@protocol PaperFoldViewDelegate<NSObject>
 @optional
 // callback when paper fold transition state changes
 // does not callback when action is cancelled
@@ -49,15 +48,13 @@ typedef void (^CompletionBlock)();
 - (void)paperFoldView:(id)paperFoldView viewDidOffset:(CGPoint)offset;
 @end
 
-@interface PaperFoldView : UIView <MultiFoldViewDelegate, UIGestureRecognizerDelegate>
+@interface PaperFoldView: UIView<MultiFoldViewDelegate, UIGestureRecognizerDelegate>
 
 // main content view
 @property (nonatomic, strong) TouchThroughUIView *contentView;
 // timer to animate folds after gesture ended
 // manual animation with NSTimer is required to sync the offset of the contentView, with the folding of views
 @property (nonatomic, strong) NSTimer *animationTimer;
-// step duration for animating a frame of paper-folding. Default value is 0.01;
-@property(nonatomic) CGFloat timerStepDuration;
 // the fold view on the left and bottom
 @property (nonatomic, strong) FoldView *bottomFoldView;
 // the fold view on the left
@@ -73,7 +70,7 @@ typedef void (^CompletionBlock)();
 @property (nonatomic, assign) BOOL enableHorizontalEdgeDragging;
 // indicate if the fold was triggered by finger panning, or set state
 @property (nonatomic, assign) BOOL isAutomatedFolding;
-@property (nonatomic, assign) id<PaperFoldViewDelegate> delegate;
+@property (nonatomic, weak) id<PaperFoldViewDelegate> delegate;
 // the initial panning direction
 @property (nonatomic, assign) PaperFoldInitialPanDirection paperFoldInitialPanDirection;
 // optimized screenshot follows the scale of the screen
@@ -90,6 +87,8 @@ typedef void (^CompletionBlock)();
 @property (nonatomic, weak) UIView *topDividerLine;
 @property (nonatomic, weak) UIView *bottomDividerLine;
 
+@property (nonatomic) BOOL enabled;
+
 // animate folding and unfolding when sent the offset of contentView
 // offset are either sent from pan gesture recognizer, or manual animation done with NSTimer after gesture ended
 - (void)animateWithContentOffset:(CGPoint)point panned:(BOOL)panned;
@@ -97,37 +96,26 @@ typedef void (^CompletionBlock)();
 // set the right fold content view
 // and the right fold container view
 // with the number of folds and pull factor
-- (void)setRightFoldContentView:(UIView*)view foldCount:(int)rightViewFoldCount pullFactor:(float)rightViewPullFactor;
+- (void)setRightFoldContentView:(UIView *)view foldCount:(int)rightViewFoldCount pullFactor:(float)rightViewPullFactor;
 
 // set the top fold content view
 // and the top fold container view
 // with the number of folds and pull factor
-- (void)setTopFoldContentView:(UIView*)view topViewFoldCount:(int)topViewFoldCount topViewPullFactor:(float)topViewPullFactor;
+- (void)setTopFoldContentView:(UIView *)view topViewFoldCount:(int)topViewFoldCount topViewPullFactor:(float)topViewPullFactor;
 
 // set the left fold content view
 // and set the left fold container view frame
-- (void)setLeftFoldContentView:(UIView*)view foldCount:(int)leftViewFoldCount pullFactor:(float)leftViewPullFactor;
+- (void)setLeftFoldContentView:(UIView *)view foldCount:(int)leftViewFoldCount pullFactor:(float)leftViewPullFactor;
 
 // set the bottom fold content view
 // and set the bottom fold container view frame
-- (void)setBottomFoldContentView:(UIView*)view;
+- (void)setBottomFoldContentView:(UIView *)view;
 
-- (void)setCenterContentView:(UIView*)view;
+- (void)setCenterContentView:(UIView *)view;
 
 // unfold the left and right view
 - (void)setPaperFoldState:(PaperFoldState)state;
 - (void)setPaperFoldState:(PaperFoldState)state animated:(BOOL)animated;
-- (void)setPaperFoldState:(PaperFoldState)state
-								 animated:(BOOL)animated
-							 completion:(CompletionBlock)completion;
-
-// deprecate methods
-// use setPaperFoldState: instead
-- (void)unfoldLeftView __attribute__((deprecated));
-- (void)unfoldRightView __attribute__((deprecated));
-- (void)restoreToCenter __attribute__((deprecated));
-// set fold views
-- (void)setLeftFoldContentView:(UIView*)view __attribute__((deprecated));
-- (void)setRightFoldContentView:(UIView*)view rightViewFoldCount:(int)rightViewFoldCount rightViewPullFactor:(float)rightViewPullFactor __attribute__((deprecated));;
+- (void)setPaperFoldState:(PaperFoldState)state animated:(BOOL)animated completion:(CompletionBlock)completion;
 
 @end

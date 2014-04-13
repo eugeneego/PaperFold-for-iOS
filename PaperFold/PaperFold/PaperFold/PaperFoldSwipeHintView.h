@@ -10,16 +10,17 @@
 
 typedef enum
 {
-    PaperFoldSwipeHintViewModeSwipeLeft = 0,
-    PaperFoldSwipeHintViewModeSwipeRight = 1,
+  PaperFoldSwipeHintViewModeSwipeLeft = 0,
+  PaperFoldSwipeHintViewModeSwipeRight = 1,
 } PaperFoldSwipeHintViewMode;
 
-@interface PaperFoldSwipeHintView : UIView
+@interface PaperFoldSwipeHintView: UIView
+
 @property (nonatomic, strong) UIImageView *imageView;
 @property (nonatomic, assign) PaperFoldSwipeHintViewMode mode;
-- (id)initWithPaperFoldSwipeHintViewMode:(PaperFoldSwipeHintViewMode)mode;
-- (void)showInView:(UIView*)view;
-+ (void)hidePaperFoldHintViewInView:(UIView*)view;
 
+- (id)initWithPaperFoldSwipeHintViewMode:(PaperFoldSwipeHintViewMode)mode;
+- (void)showInView:(UIView *)view;
++ (void)hidePaperFoldHintViewInView:(UIView *)view;
 
 @end
